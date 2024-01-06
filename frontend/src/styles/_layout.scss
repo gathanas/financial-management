@@ -1,0 +1,29 @@
+.expense-form {
+  width: 500px;
+  .details-fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr 3fr;
+    .base-input {
+      margin: 1em 1em 0 0;
+    }
+  }
+}
+
+.expense-wrapper {
+  display: flex;
+
+  & > * {
+    margin: 0 2rem 0 0;
+  }
+
+  .expenses {
+    padding: 1rem;
+    background-color: #dedede;
+    border-radius: 5px;
+
+    .expense-item {
+      display: flex;
+      padding: 3px 0;
+    }
+  }
+}
