@@ -12,21 +12,16 @@ const useCreateExpense = () => {
         setLoading(true);
         setError(null);
 
-
         const [response,error] = await requestCreateExpense(expense);
 
         setLoading(false);
-        if(response?.data !== undefined){
-            //setExpenses(response.data);
-            return true;
-        }
 
         if(typeof error === "string"){
             setError(error)
-            return false
+            return [undefined,true]
         }
 
-        return false;
+        return [response?.data,false];
        
     };
 

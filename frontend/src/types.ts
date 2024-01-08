@@ -1,12 +1,16 @@
 import { AxiosResponse } from "axios";
 import { InputHTMLAttributes } from "react";
 
+export type Category = 'food' | 'transport' | 'housing' | 'other';
+
 export interface Expense {
-  id: string;
+  id: number;
   description: string;
   amount: number;
   price: number;
-  date: Date | null;
+  date: Date | string;
+  category: Category;
+  mediaOfPayment: string;
 }
 
 export interface Expenses {
@@ -18,10 +22,11 @@ export interface ExpenseInputChangeProps<Value = any> {
 }
 
 export interface ExpenseInputProps<Value = any>
-  extends Omit<FieldInputProps, "onChange" | "value"> {
+  extends Omit<FieldInputProps, "onChange" | "value" | "defaultValue"> {
   onChange: ExpenseInputChangeProps<Value>;
   name:string;
   value:Value;
+  defaultValue?:Value;
 }
 
 export interface FieldInputProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -35,7 +40,7 @@ export interface NewExpenseSectionProps {
 
 export type NewExpense = Omit<Expense, "id">;
 
-export type NewExpeseAction = (expense: NewExpense) => Promise<boolean>;
+export type NewExpeseAction = (expense: NewExpense) => Promise<[any,boolean]>;
 
 export type RequestExpenses<Input = any> = (input?:Input) => ReturnType<BaseRequest<Expense[]>>;
 
@@ -45,4 +50,10 @@ export type BaseRequest<Data = any[]> = (url: string, method?: string, data?: an
 export interface ExpenseListProps {
     expenses: Expense[];
     month: string;
+}
+export interface NumberInputProps extends ExpenseInputProps {
+  min?: number;
+  max?: number;
+  step?: number;
+  name:string;
 }

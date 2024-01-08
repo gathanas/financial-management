@@ -22,9 +22,6 @@ export const TextInput: React.FC<ExpenseInputProps> = ({
       label={label}
       value={value}
       onChange={handleChange}
-      InputLabelProps={{
-        shrink: true,
-      }}
     />
   );
 };
